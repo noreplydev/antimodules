@@ -1,5 +1,4 @@
 use std::fs;
-use std::io::Write;
 
 struct Analytics {
     files: usize,
@@ -43,20 +42,10 @@ fn main() {
 
     println!("\n Files {}, Folders {},", results.files, results.folders);
     println!(" Node Modules {}", results.node_modules);
-    println!("\n Total {}\n", results.);
+    println!("\n Total {}\n", results.total);
 }
 
 fn traverse(dir: Option<&str>, analytics: &mut Analytics) -> Analytics {
-    if dir == None {
-        println!("Last directory passed");
-        return Analytics::new(
-            analytics.files,
-            analytics.folders,
-            analytics.total,
-            analytics.node_modules,
-        );
-    }
-
     let files = fs::read_dir(dir.unwrap());
 
     let files = match files {
@@ -79,6 +68,7 @@ fn traverse(dir: Option<&str>, analytics: &mut Analytics) -> Analytics {
         if !file.file_type().unwrap().is_dir() {
             println!("\r{}", path);
             Analytics::add_file(analytics);
+            continue;
         }
 
         Analytics::add_folder(analytics);
@@ -107,6 +97,10 @@ fn traverse(dir: Option<&str>, analytics: &mut Analytics) -> Analytics {
         }
     }
 
+    println!(
+        "{}, {}, {}, {}",
+        analytics.folders, analytics.files, analytics.total, analytics.node_modules
+    );
     return Analytics::new(
         analytics.files,
         analytics.folders,
