@@ -1,15 +1,20 @@
 mod util;
 
+use std::env;
 use util::explore::*;
 use util::structs::*;
 
 fn main() {
-    // get arguments and check if a file was passed
-    // otherwise use pwd and continue
+    let args: Vec<String> = env::args().collect();
+    let mut dir = "./";
+
+    if args.len() > 1 {
+        dir = args[1].as_str()
+    }
 
     let mut analytics = Analytics::new(0, 0, 0, 0);
 
-    let results = traverse(Some("./"), &mut analytics);
+    let results = traverse(Some(dir), &mut analytics);
 
     println!("\n Files {}, Folders {}", results.files, results.folders);
     println!(" Total {}", results.total);

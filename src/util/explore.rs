@@ -8,7 +8,7 @@ pub fn traverse(dir: Option<&str>, analytics: &mut Analytics) -> Analytics {
         Ok(files) => files,
         Err(e) => {
             panic!(
-                "Something went wrong traversing the directory <{}>: {}",
+                "Something went wrong traversing the directory '{}': {}",
                 dir.unwrap(),
                 e
             )
