@@ -2,11 +2,11 @@ pub struct Analytics {
     pub files: usize,
     pub folders: usize,
     pub total: usize,
-    pub node_modules: usize,
+    pub node_modules: Vec<String>,
 }
 
 impl Analytics {
-    pub fn new(files: usize, folders: usize, total: usize, node_modules: usize) -> Analytics {
+    pub fn new(files: usize, folders: usize, total: usize, node_modules: Vec<String>) -> Analytics {
         Analytics {
             files,
             folders,
@@ -25,7 +25,7 @@ impl Analytics {
         self.total += 1;
     }
 
-    pub fn add_node_modules(&mut self) {
-        self.node_modules += 1;
+    pub fn add_node_modules(&mut self, item: &mut Vec<String>) {
+        self.node_modules.append(item)
     }
 }

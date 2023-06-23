@@ -34,7 +34,8 @@ pub fn traverse(dir: Option<&str>, analytics: &mut Analytics) -> Analytics {
         let file_name = file_name.to_str().unwrap();
 
         if file_name == "node_modules" {
-            Analytics::add_node_modules(analytics);
+            let mut new_node_modules = vec![path.to_string()];
+            Analytics::add_node_modules(analytics, &mut new_node_modules);
             let remove_status = fs::remove_dir_all(path);
 
             match remove_status {
@@ -58,6 +59,18 @@ pub fn traverse(dir: Option<&str>, analytics: &mut Analytics) -> Analytics {
         analytics.files,
         analytics.folders,
         analytics.total,
-        analytics.node_modules,
+        analytics.node_modules.clone(),
     );
+}
+
+pub fn print_deletions(node_modules: &Vec<String>) {
+    if node_modules.len() < 1 {
+        println!("\n 0 node_modules");
+        return;
+    }
+
+    println!("\n  {} Deleted elements", node_modules.len());
+    for folder in node_modules {
+        println!("   - {}", folder);
+    }
 }
