@@ -40,9 +40,9 @@ fn main() {
 
     let results = traverse(Some("./"), &mut analytics);
 
-    println!("\n Files {}, Folders {},", results.files, results.folders);
-    println!(" Node Modules {}", results.node_modules);
-    println!("\n Total {}\n", results.total);
+    println!("\n Files {}, Folders {}", results.files, results.folders);
+    println!(" Total {}", results.total);
+    println!("\n Deleted node_modules {}\n", results.node_modules);
 }
 
 fn traverse(dir: Option<&str>, analytics: &mut Analytics) -> Analytics {
@@ -71,6 +71,7 @@ fn traverse(dir: Option<&str>, analytics: &mut Analytics) -> Analytics {
             continue;
         }
 
+        // In case of a folder
         Analytics::add_folder(analytics);
 
         let file_name = file.file_name();
@@ -97,10 +98,6 @@ fn traverse(dir: Option<&str>, analytics: &mut Analytics) -> Analytics {
         }
     }
 
-    println!(
-        "{}, {}, {}, {}",
-        analytics.folders, analytics.files, analytics.total, analytics.node_modules
-    );
     return Analytics::new(
         analytics.files,
         analytics.folders,

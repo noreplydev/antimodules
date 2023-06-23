@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "antimoduler"
+name = "antimodules"
 version = "0.1.0"
