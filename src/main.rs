@@ -13,7 +13,7 @@ fn main() {
     let config = set_config(args);
 
     let mut analytics = Analytics::new(0, 0, 0, vec![]);
-    let results = traverse(Some(config.path.as_str()), &mut analytics);
+    let results = traverse(Some(&config.path), &mut analytics, &config);
 
     print_deletions(&results.node_modules);
 

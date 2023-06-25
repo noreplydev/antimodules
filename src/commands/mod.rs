@@ -10,6 +10,8 @@ pub fn set_config(vec: Vec<String>) -> Config {
             "--ignore" | "-i" => {
                 if i + 1 < vec.len() {
                     config.ignored_folders.push(vec[i + 1].clone());
+                } else {
+                    panic!("--ignore flag must be followed by a folder name")
                 }
             }
             "--help" | "-h" => config.is_help = true,
@@ -20,15 +22,15 @@ pub fn set_config(vec: Vec<String>) -> Config {
 
     // check if the last argument or the panultimate argument are a flag
     // if there aren't, then the last argument is the path
-    let is_command = FLAGS.contains(&vec[vec.len() - 1].as_str())
-        || FLAGS.contains(&vec[vec.len() - 2].as_str());
-
-    if !is_command {
-        config.path = vec[vec.len() - 1].clone();
+    if FLAGS.contains(&vec[vec.len() - 1].as_str()) {
+        if vec.len() > 1 && FLAGS.contains(&vec[vec.len() - 1].as_str()) {
+            config.path = vec[vec.len() - 1].clone();
+        }
     }
 
     check_config(&config);
 
+    println!("{}", config.path);
     return config;
 }
 
