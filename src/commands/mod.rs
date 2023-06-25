@@ -7,13 +7,13 @@ pub fn set_config(vec: Vec<String>) -> Config {
 
     for i in 0..vec.len() {
         match vec[i].as_str() {
-            "--ignore" => {
+            "--ignore" | "-i" => {
                 if i + 1 < vec.len() {
                     config.ignored_folders.push(vec[i + 1].clone());
                 }
             }
-            "--help" => config.is_help = true,
-            "--version" => config.show_version = true,
+            "--help" | "-h" => config.is_help = true,
+            "--version" | "-v" => config.show_version = true,
             _ => {}
         }
     }
