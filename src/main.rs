@@ -11,6 +11,9 @@ fn main() {
     let args: Vec<String> = env::args().collect();
 
     let config = set_config(args);
+    // add a searching on message and ,
+    // separated files on --ignore flag
+    println!("\nSearching on: {} \n", config.path);
 
     let mut analytics = Analytics::new(0, 0, 0, vec![]);
     let results = traverse(Some(&config.path), &mut analytics, &config);
