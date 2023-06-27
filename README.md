@@ -33,3 +33,6 @@ To get the version of the command use the -v (--version) flag.
 ```
 $ antimodules -v
 ```
+
+## Contributing
+If you want to contribute to antimodules feel free to open a pull request. 
