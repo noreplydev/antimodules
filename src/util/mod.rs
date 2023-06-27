@@ -44,7 +44,7 @@ pub fn traverse(dir: Option<&str>, analytics: &mut Analytics, config: &Config) -
 
             match remove_status {
                 Ok(_) => {
-                    println!("Removed {}", path);
+                    println!("\x1b[31m - {} \x1b[0m", path);
                 }
                 Err(e) => {
                     println!("Error removing {}: {}", path, e);
