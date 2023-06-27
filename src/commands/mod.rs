@@ -22,10 +22,8 @@ pub fn set_config(vec: Vec<String>) -> Config {
 
     // check if the last argument or the panultimate argument are a flag
     // if there aren't, then the last argument is the path
-    if vec.len() >= 2 && !FLAGS.contains(&vec[vec.len() - 2].as_str()) {
-        if FLAGS.contains(&vec[vec.len() - 3].as_str()) {
-            config.path = vec[vec.len() - 1].clone();
-        }
+    if vec.len() > 0 && !FLAGS.contains(&vec[vec.len() - 2].as_str()) {
+        config.path = vec[vec.len() - 1].clone();
     }
 
     check_config(&config);
