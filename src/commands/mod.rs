@@ -9,7 +9,7 @@ pub fn set_config(vec: Vec<String>) -> Config {
         match vec[i].as_str() {
             "--ignore" | "-i" => {
                 if i + 1 < vec.len() {
-                    config.ignored_folders.push(vec[i + 1].clone());
+                    config.ignored_folders = vec[i + 1].split(',').map(|s| s.to_string()).collect();
                 } else {
                     panic!("--ignore flag must be followed by a folder name")
                 }

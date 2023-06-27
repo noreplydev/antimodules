@@ -1,4 +1,4 @@
-use crate::models::{analytics::*, config::Config};
+use crate::models::{analytics::Analytics, config::Config};
 use std::fs;
 
 pub fn traverse(dir: Option<&str>, analytics: &mut Analytics, config: &Config) -> Analytics {
@@ -73,7 +73,7 @@ pub fn print_deletions(node_modules: &Vec<String>) {
         return;
     }
 
-    println!("\n  {} Deleted elements", node_modules.len());
+    println!("\n  {} Deleted element(s)", node_modules.len());
     for folder in node_modules {
         println!("   - {}", folder);
     }
