@@ -36,3 +36,5 @@ $ antimodules -v
 
 ## Contributing
 If you want to contribute to antimodules feel free to open a pull request. Feel free to contact me via email or linkedin (available on https://cristian-sanchez.me).
+
+@noreplydev 
