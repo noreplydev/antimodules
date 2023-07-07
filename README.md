@@ -1,5 +1,5 @@
 # antimodules
-antimodules is a simple rust utility to remove all node_modules folders from a given directory or the execution directory. 
+antimodules is a simple rust utility to remove all node_modules folders from a given directory or the execution directory by default. 
 
 ## usage
 To use antimodules simply run cargo install and the github repository. 
